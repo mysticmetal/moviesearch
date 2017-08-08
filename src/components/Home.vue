@@ -117,7 +117,7 @@ export default {
       noImageFound: false,
       totalResults: 0,
       snackbar: false,
-      apiKey: "3179fe3f"
+      apiKey: ""
     }
   },
   methods: {
