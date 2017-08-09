@@ -31,16 +31,25 @@
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile @click="visitRepo">
+          <v-list-tile-action>
+            <v-icon>code</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>GitHub</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar fixed dark>
-      <v-toolbar-title>Movie Search</v-toolbar-title>
+      <v-toolbar-title @click="$router.push('/')">Movie Search</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-toolbar-side-icon @click.native.stop="drawer = !drawer" class="hidden-md-and-up"></v-toolbar-side-icon>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat @click="$router.push('/')">Home</v-btn>
         <v-btn flat @click="$router.push('/about')">About</v-btn>
+        <v-btn flat @click="visitRepo">GitHub</v-btn>
       </v-toolbar-items>
 
     </v-toolbar>
@@ -49,6 +58,7 @@
         <router-view></router-view>
         <!--v-router-->
       </v-container>
+      
     </main>
     <v-footer class="pa-3">
       <v-spacer></v-spacer>
@@ -70,6 +80,12 @@ export default {
       ],
       mini: false,
       right: null
+    }
+  },
+  methods: {
+    visitRepo() {
+      const redirectWindow = window.open('https://github.com/sorxrob/moviesearch', '_blank');
+      redirectWindow.location;
     }
   }
 }

@@ -32,7 +32,8 @@
                 <h3 class="white--text">{{ m.title }}</h3>
                 <span v-if="m.type == 'movie'">Movie</span>
                 <span v-else-if="m.type == 'series'">Series</span>
-                <span v-else-if="m.type == 'episode'">Episode</span> | {{ m.imdbRating }}/10 <br> Release Date: {{ m.released
+                <span v-else-if="m.type == 'episode'">Episode</span>
+                <span v-else-if="m.type == 'game'">Game</span> | {{ m.imdbRating }}/10 <br> Release Date: {{ m.released
                 }} <br> Genres: {{ m.genre }} <br><br>
                 <p v-if="m.plot == 'N/A'">No plot available.</p>
                 <p v-else>{{ m.plot }}</p>
@@ -63,7 +64,8 @@
         <v-card-text style="height: 500px;">
           <span v-if="movie.type == 'movie'">Movie</span>
           <span v-else-if="movie.type == 'series'">Series</span>
-          <span v-else-if="movie.type == 'episode'">Episode</span> | {{ movie.imdbRating }}/10 |
+          <span v-else-if="movie.type == 'episode'">Episode</span>
+          <span v-else-if="movie.type == 'game'">Game</span> | {{ movie.imdbRating }}/10 |
           Release Date: {{ movie.released }}
           <br> Genres: {{ movie.genre }} <br><br>
           <p>Directed by: {{ movie.director }}</p>
@@ -75,7 +77,8 @@
           <p>Actors: {{ movie.actors }}</p>
           <p>Rated: {{ movie.rated }}</p>
           <p>Awards: {{ movie.awards }}</p>
-          <p>Website: <a :href="movie.website">{{ movie.website }}</a></p>
+          <p v-if="movie.website == 'N/A'">Website: None</p>
+          <p v-else>Website: <a :href="movie.website">{{ movie.website }}</a></p>
           <p>Metascore: {{ movie.metascore }}</p>
           <p>IMDb Votes: {{ movie.imdbVotes }}</p>
           <p>IMDb Rating: {{ movie.imdbRating }}</p>
@@ -117,7 +120,8 @@ export default {
       noImageFound: false,
       totalResults: 0,
       snackbar: false,
-      apiKey: ""
+      apiKey: "",
+      moviedbApiKey: ""
     }
   },
   methods: {
